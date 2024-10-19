@@ -7,13 +7,14 @@ import { Toaster } from 'react-hot-toast';
 import App from './App.jsx';
 import './index.css';
 import Layout from './components/Layout/Layout.jsx';
-import { About, Contact, Github, Home, Login, Signin, VerifyEmailOTP, ForgotPasswordEmail, NewPassword } from './components/index.js';
-import { githubInfoLoader } from './components/github/Github.jsx';
+import { About, Contact, Home, Login, Signin, VerifyEmailOTP, ForgotPasswordEmail, NewPassword } from './components/index.js';
 import { store } from "./store/store.js";
 import PrivateRoute from './utils/PriviteRoute.jsx';
 import authService from './appwrite/auth.appwrite.js';
 import { login } from './store/features/userSlice.js';
 import LoginRedirect from './utils/LoginRedirect.jsx';
+import Github from './components/github/Github.jsx';
+import { githubInfoLoader } from './components/github/Github.jsx';
 
 
 

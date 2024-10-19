@@ -7,10 +7,8 @@ import NavbarMini from "./navbar/NavbarMini.jsx"
 import Home from "./home/Home.jsx"
 import About from "./about/About.jsx"
 import Contact from "./contact/Contact.jsx"
-import Github from "./github/Github.jsx"
 import LogoutBtn from "./buttons/LogoutBtn.jsx"
 
 export {Login, Signin, VerifyEmailOTP, ForgotPasswordEmail, NewPassword, NavbarMini, Home, About, Contact, 
-    Github,
     LogoutBtn,
 }
