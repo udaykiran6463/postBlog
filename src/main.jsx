@@ -13,8 +13,8 @@ import PrivateRoute from './utils/PriviteRoute.jsx';
 import authService from './appwrite/auth.appwrite.js';
 import { login } from './store/features/userSlice.js';
 import LoginRedirect from './utils/LoginRedirect.jsx';
-import Github from './components/github/Github.jsx';
-import { githubInfoLoader } from './utils/githubInfoLoader.js';
+// import Github from './components/github/Github.jsx';
+// import { githubInfoLoader } from './utils/githubInfoLoader.js';
 
 
 
@@ -36,7 +36,7 @@ const router = createBrowserRouter(
                 <Route path='verifyEmail' element={<VerifyEmailOTP />} />
                 <Route path='forgotPasswordEmail' element={<ForgotPasswordEmail />} />
                 <Route path='newPassword' element={<NewPassword />} />
-                <Route loader={githubInfoLoader} path='Github' element={<Github />} />
+                {/* <Route loader={githubInfoLoader} path='Github' element={<Github />} /> */}
                 <Route path='contact' element={<Contact />} />
             </Route>
         </Route>
@@ -47,7 +47,7 @@ createRoot(document.getElementById('root')).render(
     <StrictMode>
         <Provider store={store}>
             <RouterProvider router={router} />
-            <Toaster /> {/* Toaster component to display toast notifications */}
+            <Toaster />
         </Provider>
     </StrictMode>
 );
