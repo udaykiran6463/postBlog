@@ -12,10 +12,13 @@ const userSlice = createSlice({
         login:(state,action)=>{
             state.status = true;
             state.userData = action.payload;
+            localStorage.setItem("userData",JSON.stringify(action.payload));
         },
-        logout:(state)=>{
+        logout:(state,action)=>{
             state.status = false;
             state.userData = undefined;
+            localStorage.removeItem('userData');
+            console.log("Logging out inside the userSlice");
         }
     }
 })
