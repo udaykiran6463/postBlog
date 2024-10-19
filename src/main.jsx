@@ -13,7 +13,8 @@ import PrivateRoute from './utils/PriviteRoute.jsx';
 import authService from './appwrite/auth.appwrite.js';
 import { login } from './store/features/userSlice.js';
 import LoginRedirect from './utils/LoginRedirect.jsx';
-import Github, { githubInfoLoader } from './components/github/Github.jsx';
+import Github from './components/github/Github.jsx';
+import { githubInfoLoader } from './utils/githubInfoLoader.js';
 
 
 
