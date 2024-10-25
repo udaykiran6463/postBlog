@@ -18,9 +18,9 @@ function NavbarMini() {
             </div>
             <div className='text-xl flex gap-8 '>
                 <NavLink to="./" className={({ isActive }) => (`${isActive ? 'text-[#d04646] ' : 'text-white'}`)}>Home</NavLink>
-                <NavLink to="/about" className={({ isActive }) => (`${isActive ? 'text-[#d04646]' : 'text-white'}`)}>About</NavLink>
-                <NavLink to="/contact" className={({ isActive }) => (`${isActive ? 'text-[#d04646]' : 'text-white'}`)}>Contact</NavLink>
-                <NavLink to="/github" className={({ isActive }) => (`${isActive ? 'text-[#d04646]' : 'text-white'}`)}>Github</NavLink>
+                <NavLink to="/addpost" className={({ isActive }) => (`${isActive ? 'text-[#d04646]' : 'text-white'}`)}>Add Post</NavLink>
+                <NavLink to="/yourposts" className={({ isActive }) => (`${isActive ? 'text-[#d04646]' : 'text-white'}`)}>Your Posts</NavLink>
+                {/* <NavLink to="/github" className={({ isActive }) => (`${isActive ? 'text-[#d04646]' : 'text-white'}`)}>Github</NavLink> */}
             </div>
             <div className='w-44'>
                 {

@@ -15,7 +15,7 @@ function LogoutBtn() {
             await authService.logout();
             dispatch(logout());
             toast.success('Logged out successfully!', { id: toastId });
-            navigate('/');
+            navigate('/login');
         } catch (error) {
             console.error('Error while logging out:', error.message || error);
             toast.error('Error while logging out', {id: toastId});

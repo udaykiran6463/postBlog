@@ -23,6 +23,7 @@ function VerifyEmailOTP() {
         }
     }
 
+
     return (
         <div className='h-[90vh] bg-[#000814] text-white flex flex-wrap justify-center'>
             <div className=' w-96 mt-28 h-80'>
@@ -48,7 +49,7 @@ function VerifyEmailOTP() {
                 </div>
                 <button className='mt-10 border border-[#e18d8d] w-full py-3 text-xl rounded text-white bg-[#c77e7e] hover:bg-[#da9595] transition-all duration-300 active:scale-[97%]    '>Verify Email</button>
                 <div className='flex w-full justify-between mt-[8px] px-1'>
-                    <NavLink to="/login">
+                    <NavLink onClick={handleVerifyEmail}>
                         <p className='text-white cursor-pointer ' ><span className='text-white transition-all duration-300  ' >←</span> Back to login</p>
                     </NavLink>
                         

@@ -87,6 +87,12 @@ function Login() {
                     </NavLink>
                 </div>
             </form>
+
+            {/* <div className='absolute bottom-10 right-16'>
+                <NavLink to='/verifyEmail' >
+                    <button className='w-full py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg transition duration-300 ease-in-out mt-5'> Verify Email </button>
+                </NavLink>
+            </div> */}
         </div>
     );
 }

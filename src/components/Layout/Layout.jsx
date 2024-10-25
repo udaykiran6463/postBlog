@@ -10,8 +10,7 @@ function Layout() {
 
     const checkUserStatus = async () => {
         try {
-            const user = authService.getUserDetailsFromLocalStorage()
-            console.log(user);
+            const user = await authService.getUserDetailsFromLocalStorage()
             if (user) {
                 dispatch(login(user));
             }

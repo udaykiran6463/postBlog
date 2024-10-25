@@ -1,6 +1,5 @@
 import { ID, Client, Account } from 'appwrite';
 import { apiEndpoint, projectId } from '../../env.config.js';
-// Removed unused 'use' from 'framer-motion/client'
 
 class Auth {
     appWriteClient;
@@ -8,9 +7,21 @@ class Auth {
 
     constructor() {
         this.appWriteClient = new Client()
-            .setEndpoint(apiEndpoint)
-            .setProject(projectId);
+            .setEndpoint(apiEndpoint) // Ensure apiEndpoint is valid
+            .setProject(projectId)     // Ensure projectId is valid
+            // .setKey(apiKey);  
         this.account = new Account(this.appWriteClient);
+    }
+    
+    // Send verification email
+    async sendVerificationEmail() {
+        try {
+            const response = await this.account.createVerification('http://localhost:5173/EmailVerificationPage'); 
+            console.log('Verification email sent:', response);
+        } catch (error) {
+            console.log('Error sending verification email:', error.message);
+            throw error;
+        }
     }
 
     // Create a new user
@@ -20,61 +31,68 @@ class Auth {
                 ID.unique(),
                 email,
                 password,
-                username // Correct parameter name
+                username
             );
+            
+            // if (!userAccount) {
+            //     throw new Error("Account creation failed.");
+            // }
+            
+            // // Send email verification after account creation
+            // await this.sendVerificationEmail();
+            // console.log("Verification email sent. Please check your inbox.");
 
-            if (!userAccount) {
-                throw new Error("Account creation failed.");
-            }
-
-            // Automatically log in after account creation
-            return this.login({ email, password });
+            return userAccount;
         } catch (error) {
             console.log("Error while creating the account:", error.message);
-            throw error; // Optional: rethrow the error for further handling
+            throw error;
         }
     }
 
+    // Log in the user
     async login({ email, password }) {
         try {
-            const userSession = await this.account.createEmailPasswordSession(email, password);
-            let accountDetails = await this.getCurrentUserDetails();
-            return accountDetails;
+            const session = await this.account.createEmailPasswordSession(email, password);
+            const user = await this.getCurrentUserDetails();
+
+            // // Check if the user's email is verified
+            // if (!user || !user.emailVerification) {
+            //     throw new Error("Email not verified. Please verify your email to log in.");
+            // }
+
+            return user;
         } catch (error) {
             console.log("Error while logging in:", error.message);
-            throw error; // Optional: rethrow the error for further handling
+            throw error;
         }
     }
 
     async getCurrentUserDetails() {
         try {
-            return await this.account.get();
+            const accountDetails = await this.account.get();
+            return accountDetails;
         } catch (error) {
             console.log("Error while fetching user details:", error.message);
-            throw error; // Optional: rethrow the error for further handling
+            throw error;
         }
     }
 
     async logout() {
         try {
-            // Fetch the current session
             const session = await this.account.getSession('current');
-            const sessionId = session.$id;
-            if (!sessionId) {
+            if (!session) {
                 throw new Error("No valid session found");
             }
-            // Delete the current session
-            return await this.account.deleteSession(sessionId);
-        } 
-        catch (error) {
+            return await this.account.deleteSession(session.$id);
+        } catch (error) {
             console.log("Error while logging out:", error.message || error);
             throw error;
         }
     }
-    
 
     getUserDetailsFromLocalStorage() {
-        return JSON.parse(localStorage.getItem("userData"));
+        const userData = localStorage.getItem("userData");
+        return userData ? JSON.parse(userData) : null;
     }
 }
 

@@ -3,7 +3,11 @@ import { getCodes } from '../../assets/phoneCodes.js';
 import { useNavigate } from 'react-router';
 import transition from '../../Transition.jsx';
 import { toast } from "react-hot-toast";
-import { Toaster } from "react-hot-toast";
+import {login} from "../../store/features/userSlice.js"
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import authService from '../../appwrite/auth.appwrite.js';
+
 
 function Signin() {
     const phoneCodes = getCodes();
@@ -28,17 +32,20 @@ function Signin() {
         const toastId = toast.loading('Creating account...');
 
         try {
-            console.log(userName, email, password, confirmPassword);
-            // username already exits or email already exists
+            console.log(userName, email, password);
+            const userRegisterd = await authService.createAccount({email, password, username:userName});
+
             // account already exists
             // send email verification
             // call for account creation
             // if account created then login automatcally
             // else show error
-            await new Promise((resolve) => setTimeout(resolve, 1000));
+            await new Promise((resolve) => setTimeout(resolve, 10));
+            toast.success('account created successfully', { id: toastId });
+            navigate('/login');
 
         } catch (error) {
-            toast.error('Failed to create account!', { id: toastId });
+            toast.error(error.message, { id: toastId });
             console.error("Error while creating account:", error);
         }
     };
